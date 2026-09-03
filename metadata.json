@@ -1,0 +1,6 @@
+{
+  "name": "Unity Cash",
+  "description": "Earn coins and real rewards with Unity Ads (Game ID 6171812), daily bonuses, lucky spins, scratch cards, and instant payouts without login or database.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

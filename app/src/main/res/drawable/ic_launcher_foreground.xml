@@ -1,0 +1,65 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer Golden Coin Ring -->
+    <path
+        android:pathData="M54,54m-27,0a27,27 0 1,0 54,0a27,27 0 1,0 -54,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="32"
+                android:startY="28"
+                android:endX="76"
+                android:endY="80"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFE082" />
+                <item android:offset="0.4" android:color="#FFB300" />
+                <item android:offset="1.0" android:color="#FF8F00" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Inner Coin Face with Depth -->
+    <path
+        android:pathData="M54,54m-22,0a22,22 0 1,0 44,0a22,22 0 1,0 -44,0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="35"
+                android:startY="35"
+                android:endX="72"
+                android:endY="72"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFF8E1" />
+                <item android:offset="0.2" android:color="#FFD54F" />
+                <item android:offset="0.8" android:color="#FFA000" />
+                <item android:offset="1.0" android:color="#E65100" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Beveled Edge Ring -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,54m-22,0a22,22 0 1,0 44,0a22,22 0 1,0 -44,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FFE57F" />
+
+    <!-- Center Currency / Star Diamond Emblem -->
+    <!-- Stylized Dollar / Sparkle Shape -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,39 L57.5,49.5 L68,54 L57.5,58.5 L54,69 L50.5,58.5 L40,54 L50.5,49.5 Z" />
+
+    <!-- Inner Golden Center Dot -->
+    <path
+        android:fillColor="#FF8F00"
+        android:pathData="M54,54m-3.5,0a3.5,3.5 0 1,0 7,0a3.5,3.5 0 1,0 -7,0" />
+
+    <!-- Gleam Highlights -->
+    <path
+        android:fillColor="#80FFFFFF"
+        android:pathData="M43,40 C47,35 55,34 61,37 C59,37 50,38 45,44 Z" />
+</vector>
