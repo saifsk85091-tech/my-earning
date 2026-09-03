@@ -152,6 +152,9 @@ class UnityAdsManager private constructor() {
         override fun onUnityAdsAdLoaded(loadedPlacementId: String?) {
           Log.d("UnityAdsManager", "Rewarded Ad Loaded: $loadedPlacementId")
           _rewardedAdState.value = AdState.Ready
+          if (loadedPlacementId != null && loadedPlacementId != currentRewardedPlacement) {
+            currentRewardedPlacement = loadedPlacementId
+          }
         }
 
         override fun onUnityAdsFailedToLoad(
@@ -162,8 +165,17 @@ class UnityAdsManager private constructor() {
           val msg = message ?: "Failed to load ad"
           Log.w("UnityAdsManager", "Rewarded Ad Load failed ($failedPlacementId, error=$error): $msg")
 
-          val friendlyMsg = if (msg.contains("adMarkup", ignoreCase = true) || error == UnityAds.UnityAdsLoadError.INVALID_ARGUMENT) {
-            "Header bidding placement detected. In Unity Dashboard (dashboard.unity.com -> Monetization -> Settings), set Mediation Partner to 'Unity Ads only' or ensure standard waterfall placements are active."
+          val isHeaderBiddingError = msg.contains("adMarkup", ignoreCase = true) ||
+            error == UnityAds.UnityAdsLoadError.INVALID_ARGUMENT
+
+          if (tryFallback && isHeaderBiddingError && failedPlacementId != "rewardedVideo") {
+            Log.i("UnityAdsManager", "Header bidding placement detected on '$failedPlacementId'. Attempting fallback to 'rewardedVideo'...")
+            loadRewardedAd("rewardedVideo", tryFallback = false)
+            return
+          }
+
+          val friendlyMsg = if (isHeaderBiddingError) {
+            "Header bidding placement detected for '$failedPlacementId'. In Unity Dashboard (dashboard.unity.com -> Monetization -> Settings), set Mediation Partner to 'Unity Ads only' or ensure standard waterfall placements are active."
           } else {
             msg
           }
@@ -185,6 +197,9 @@ class UnityAdsManager private constructor() {
         override fun onUnityAdsAdLoaded(loadedPlacementId: String?) {
           Log.d("UnityAdsManager", "Interstitial Ad Loaded: $loadedPlacementId")
           _interstitialAdState.value = AdState.Ready
+          if (loadedPlacementId != null && loadedPlacementId != currentInterstitialPlacement) {
+            currentInterstitialPlacement = loadedPlacementId
+          }
         }
 
         override fun onUnityAdsFailedToLoad(
@@ -195,8 +210,17 @@ class UnityAdsManager private constructor() {
           val msg = message ?: "Failed to load interstitial"
           Log.w("UnityAdsManager", "Interstitial Ad Load failed ($failedPlacementId, error=$error): $msg")
 
-          val friendlyMsg = if (msg.contains("adMarkup", ignoreCase = true) || error == UnityAds.UnityAdsLoadError.INVALID_ARGUMENT) {
-            "Header bidding placement detected. In Unity Dashboard (dashboard.unity.com -> Monetization -> Settings), set Mediation Partner to 'Unity Ads only' or ensure standard waterfall placements are active."
+          val isHeaderBiddingError = msg.contains("adMarkup", ignoreCase = true) ||
+            error == UnityAds.UnityAdsLoadError.INVALID_ARGUMENT
+
+          if (tryFallback && isHeaderBiddingError && failedPlacementId != "video") {
+            Log.i("UnityAdsManager", "Header bidding placement detected on '$failedPlacementId'. Attempting fallback to 'video'...")
+            loadInterstitialAd("video", tryFallback = false)
+            return
+          }
+
+          val friendlyMsg = if (isHeaderBiddingError) {
+            "Header bidding placement detected for '$failedPlacementId'. In Unity Dashboard (dashboard.unity.com -> Monetization -> Settings), set Mediation Partner to 'Unity Ads only' or ensure standard waterfall placements are active."
           } else {
             msg
           }

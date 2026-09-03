@@ -285,7 +285,18 @@ fun UnityInspectorScreen(
               shape = RoundedCornerShape(8.dp),
               modifier = Modifier.weight(1f)
             ) {
-              Text("Default Placements", fontSize = 11.sp, color = EmeraldLight)
+              Text("Modern Placements", fontSize = 11.sp, color = EmeraldLight)
+            }
+            OutlinedButton(
+              onClick = {
+                rewardedInput = "rewardedVideo"
+                interstitialInput = "video"
+                bannerInput = "banner"
+              },
+              shape = RoundedCornerShape(8.dp),
+              modifier = Modifier.weight(1f)
+            ) {
+              Text("Legacy/Waterfall", fontSize = 11.sp, color = GoldAccent)
             }
           }
 

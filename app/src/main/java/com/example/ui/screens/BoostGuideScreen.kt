@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.Diamond
 import androidx.compose.material.icons.filled.Info
@@ -269,7 +270,7 @@ fun BoostGuideScreen(
         title = "4. The 2X Multiplier Retention Loop",
         subtitle = "Triple session length without ad burnout",
         description = "By offering 2X multiplier boosts, lucky wheel spins, and scratch cards, users naturally watch 6-10 video ads per session while remaining highly satisfied. This organic loop maximizes your ad impression volume effortlessly without a backend database!",
-        icon = Icons.Default.TrendingUp,
+        icon = Icons.AutoMirrored.Filled.TrendingUp,
         accentColor = PurpleBoost
       )
     }
